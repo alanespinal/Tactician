@@ -35,3 +35,10 @@ img {
 .ball {
   z-index: 10;
 }
+
+.key {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}

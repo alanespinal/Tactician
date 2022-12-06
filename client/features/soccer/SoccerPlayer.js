@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Draggable from "react-draggable";
-import { addPlayer } from "./playerSlice";
+import { addSoccerPlayer } from "./soccerPlayerSlice";
 
-function Player({ color, playerNumber, xCoordinate, yCoordinate }) {
+function SoccerPlayer({ color, playerNumber, xCoordinate, yCoordinate }) {
   const userId = useSelector((state) => state.auth.me.id);
   const dispatch = useDispatch();
   const [x, setX] = useState(xCoordinate);
@@ -13,7 +13,7 @@ function Player({ color, playerNumber, xCoordinate, yCoordinate }) {
     setX(data.x);
     setY(data.y);
     dispatch(
-      addPlayer({
+      addSoccerPlayer({
         playerNumber: playerNumber,
         xCoordinate: data.x,
         yCoordinate: data.y,
@@ -49,4 +49,4 @@ function Player({ color, playerNumber, xCoordinate, yCoordinate }) {
   );
 }
 
-export default Player;
+export default SoccerPlayer;

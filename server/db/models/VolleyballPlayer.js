@@ -1,9 +1,9 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const VolleyballPlayer = db.define("player", {
+const VolleyballPlayer = db.define("volleyballPlayer", {
   position: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
   },
   xCoordinate: {
     type: Sequelize.INTEGER,

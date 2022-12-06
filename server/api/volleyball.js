@@ -1,24 +1,13 @@
 const router = require("express").Router();
 const {
-  models: { User, SoccerPlayer },
+  models: { User, VolleyballPlayer },
 } = require("../db");
 const { checkUser } = require("./middleware");
 module.exports = router;
 
-router.get("/", checkUser, async (req, res, next) => {
+router.get("/:id/volleyball-players", async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      attributes: ["id", "username"],
-    });
-    res.json(users);
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.get("/:id/soccer-players", async (req, res, next) => {
-  try {
-    const players = await SoccerPlayer.findAll({
+    const players = await VolleyballPlayer.findAll({
       where: {
         userId: req.params.id,
       },
@@ -29,21 +18,21 @@ router.get("/:id/soccer-players", async (req, res, next) => {
   }
 });
 
-router.post("/:id/players", async (req, res, next) => {
+router.post("/:id/volleyball-players", async (req, res, next) => {
   try {
-    const player = await SoccerPlayer.findOne({
+    const player = await VolleyballPlayer.findOne({
       where: {
-        playerNumber: req.body.playerNumber,
+        position: req.body.position,
         color: req.body.color,
         userId: req.body.userId,
       },
     });
     if (!player) {
-      await Player.create(req.body);
+      await VolleyballPlayer.create(req.body);
     } else if (player) {
       await player.update(req.body);
     }
-    const allPlayers = await SoccerPlayer.findAll({
+    const allPlayers = await VolleyballPlayer.findAll({
       where: {
         userId: req.params.id,
       },
@@ -54,12 +43,12 @@ router.post("/:id/players", async (req, res, next) => {
   }
 });
 
-router.put("/:id/players", async (req, res, next) => {
+router.put("/:id/volleyball-players", async (req, res, next) => {
   try {
-    const player = await SoccerPlayer.findOne({
+    const player = await VolleyballPlayer.findOne({
       where: {
         userId: req.params.id,
-        playerNumber: req.body.playerNumber,
+        position: req.body.position,
         color: req.body.color,
       },
     });
@@ -67,7 +56,7 @@ router.put("/:id/players", async (req, res, next) => {
       xCoordinate: req.body.xCoordinate,
       yCoordinate: req.body.yCoordinate,
     });
-    const allPlayers = await SoccerPlayer.findAll({
+    const allPlayers = await VolleyballPlayer.findAll({
       where: {
         userId: req.params.id,
       },
@@ -78,9 +67,9 @@ router.put("/:id/players", async (req, res, next) => {
   }
 });
 
-router.delete("/:id/players", async (req, res, next) => {
+router.delete("/:id/volleyball-players", async (req, res, next) => {
   try {
-    const allPlayers = await SoccerPlayer.findAll({
+    const allPlayers = await VolleyballPlayer.findAll({
       where: {
         userId: req.params.id,
       },

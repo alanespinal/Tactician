@@ -1,5 +1,5 @@
 import React from "react";
-import Player from "./Player";
+import SoccerPlayer from "./SoccerPlayer";
 import { Stack } from "@mui/material";
 
 function YellowPlayers({ players }) {
@@ -11,7 +11,7 @@ function YellowPlayers({ players }) {
   return (
     <Stack spacing={-12.5}>
       {yellowPlayers.map((player) => (
-        <Player
+        <SoccerPlayer
           color={player.color}
           playerNumber={player.playerNumber}
           key={player.playerNumber}
@@ -22,7 +22,7 @@ function YellowPlayers({ players }) {
       {numbers.map((number) => {
         if (!yellowNumbers.includes(number)) {
           return (
-            <Player
+            <SoccerPlayer
               color={"yellow"}
               playerNumber={number}
               key={number}

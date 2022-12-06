@@ -1,8 +1,8 @@
-"use strict";
+// "use strict";
 
 const {
   db,
-  models: { User, SoccerPlayer },
+  models: { User, SoccerPlayer, VolleyballPlayer },
 } = require("../server/db");
 
 /**
@@ -19,7 +19,7 @@ async function seed() {
     User.create({ username: "murphy", password: "123" }),
   ]);
 
-  const players = await Promise.all([
+  const soccerPlayers = await Promise.all([
     SoccerPlayer.create({
       playerNumber: 1,
       xCoordinate: -305,
@@ -99,6 +99,65 @@ async function seed() {
     }),
   ]);
 
+  const volleyballPlayers = await Promise.all([
+    VolleyballPlayer.create({
+      position: "OH1",
+      xCoordinate: 557,
+      yCoordinate: -555,
+      color: "yellow",
+      userId: 1,
+    }),
+    VolleyballPlayer.create({
+      position: "OH2",
+      xCoordinate: 261,
+      yCoordinate: -346,
+      color: "yellow",
+      userId: 1,
+    }),
+    VolleyballPlayer.create({
+      position: "OH1",
+      xCoordinate: 557,
+      yCoordinate: -555,
+      color: "yellow",
+      userId: 1,
+    }),
+    VolleyballPlayer.create({
+      position: "MB1",
+      xCoordinate: 566,
+      yCoordinate: -450,
+      color: "yellow",
+      userId: 1,
+    }),
+    VolleyballPlayer.create({
+      position: "OH2",
+      xCoordinate: 333,
+      yCoordinate: -398,
+      color: "yellow",
+      userId: 1,
+    }),
+    VolleyballPlayer.create({
+      position: "S",
+      xCoordinate: 565,
+      yCoordinate: -812,
+      color: "yellow",
+      userId: 1,
+    }),
+    VolleyballPlayer.create({
+      position: "O",
+      xCoordinate: 268,
+      yCoordinate: -897,
+      color: "yellow",
+      userId: 1,
+    }),
+    VolleyballPlayer.create({
+      position: "L",
+      xCoordinate: 275,
+      yCoordinate: -1131,
+      color: "green",
+      userId: 1,
+    }),
+  ]);
+
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
   return {
@@ -106,6 +165,8 @@ async function seed() {
       cody: users[0],
       murphy: users[1],
     },
+    soccerPlayers,
+    volleyballPlayers,
   };
 }
 

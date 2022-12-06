@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Stack } from "@mui/material";
-import { getPlayers, resetAll } from "./playerSlice";
+import { getSoccerPlayers, resetAllSoccerPlayers } from "./soccerPlayerSlice";
 import GreenPlayers from "./GreenPlayers";
 import RedPlayers from "./RedPlayers";
 import BluePlayers from "./BluePlayers";
@@ -12,18 +12,17 @@ import Draggable from "react-draggable";
 const Home = (props) => {
   const username = useSelector((state) => state.auth.me.username);
   const userId = useSelector((state) => state.auth.me.id);
-  const players = useSelector((state) => state.player.players);
+  const players = useSelector((state) => state.soccerPlayer.players);
   const dispatch = useDispatch();
 
-  const numbers = [13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-
   const handleReset = () => {
-    dispatch(resetAll(userId));
-    dispatch(getPlayers(userId));
+    dispatch(resetAllSoccerPlayers(userId));
+    window.location.reload();
+    dispatch(getSoccerPlayers(userId));
   };
 
   useEffect(() => {
-    dispatch(getPlayers(userId));
+    dispatch(getSoccerPlayers(userId));
   }, []);
 
   return (

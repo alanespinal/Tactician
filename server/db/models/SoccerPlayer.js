@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const SoccerPlayer = db.define("player", {
+const SoccerPlayer = db.define("soccerPlayer", {
   playerNumber: {
     type: Sequelize.INTEGER,
   },
